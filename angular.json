@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/style-grupo-gps/dist/css/po-theme-custom.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -96,6 +97,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -103,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

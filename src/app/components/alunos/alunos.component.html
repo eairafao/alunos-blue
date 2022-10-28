@@ -1,0 +1,212 @@
+<div class="po-wrapper">
+  <router-outlet></router-outlet>
+  <po-page-default p-title="Alunos">
+    <po-input
+      class="po-xl-2 po-lg-2 po-md-6 po-sm-5"
+      #crfiltro
+      p-placeholder="Pesquisar..."
+      [(ngModel)]="inputFiltro"
+    >
+    </po-input>
+
+    <po-button
+      class="po-xl-2 po-lg-2 po-md-6 po-sm-3 po-mb-2 botoesPrincipais"
+      p-icon="po-icon po-icon-search"
+      p-label="Pesquisar"
+      (p-click)="filterPrimario()"
+    >
+    </po-button>
+
+    <po-button
+      class="po-xl-2 po-lg-2 po-md-6 po-sm-3 po-mb-2 botoesPrincipais"
+      p-icon="po-icon po-icon-plus-circle"
+      p-label="Incluir"
+      (p-click)="openModalIncluir()"
+    >
+    </po-button>
+
+    <br />
+    <br />
+
+    <div class="filtro">
+      <po-disclaimer-group
+        p-title="Fitro aplicado"
+        [p-disclaimers]="aFilterDisclaimer"
+        (p-remove-all)="removeFilter()"
+        (p-remove)="removeFilter()"
+      ></po-disclaimer-group>
+    </div>
+
+    <po-table
+      class="po-md-12"
+      p-container="shadow"
+      [p-hide-text-overflow]="true"
+      [p-hide-columns-manager]="true"
+      [p-striped]="true"
+      [p-sort]="true"
+      [p-items]="items"
+      [p-columns]="columnsTable"
+    >
+    </po-table>
+
+    <po-modal
+      #modalIncluir
+      [p-hide-close]="true"
+      [p-primary-action]="confirmModalI"
+      [p-secondary-action]="closeModalI"
+      p-size="string"
+      p-title="Incluir Aluno"
+    >
+      <po-input
+        p-label="Nome Completo"
+        name="nomeCompleto"
+        [(ngModel)]="nomeCompleto"
+      ></po-input>
+
+      <po-input
+        p-label="Email"
+        name="email"
+        [(ngModel)]="email"
+        class="po-md-6"
+      ></po-input>
+
+      <po-number
+        p-label="Telefone"
+        [p-minlength]="11"
+        name="telefone"
+        [(ngModel)]="telefone"
+        class="po-md-6"
+      ></po-number>
+
+      <po-number
+        p-label="RA"
+        name="ra"
+        [(ngModel)]="ra"
+        [p-maxlength]="9"
+        class="po-md-6"
+      ></po-number>
+
+      <po-input
+        p-label="Curso"
+        name="curso"
+        [(ngModel)]="curso"
+        class="po-md-6"
+      ></po-input>
+
+      <po-input
+        p-label="Número de classe"
+        class="po-md-6"
+        name="classe"
+        [(ngModel)]="classe"
+        [p-maxlength]="2"
+      ></po-input>
+
+      <po-number
+        p-label="Idade"
+        name="idade"
+        [(ngModel)]="idade"
+        class="po-md-6"
+        [p-maxlength]="3"
+      ></po-number>
+    </po-modal>
+
+    <po-modal #modalVisualizar p-click-out="true" p-size="lg">
+      <po-info
+        p-label="Nome"
+        [p-value]="nomeCompletoVisualizar"
+        class="po-md-6"
+      >
+      </po-info>
+
+      <po-info p-label="Email" [p-value]="emailVisualizar" class="po-md-6">
+      </po-info>
+
+      <po-info p-label="RA" [p-value]="raVisualizar" class="po-md-6"> </po-info>
+
+      <po-info
+        p-label="Telefone"
+        [p-value]="telefoneVisualizar"
+        class="po-md-6"
+      >
+      </po-info>
+
+      <po-info p-label="Curso" [p-value]="cursoVisualizar" class="po-md-6">
+      </po-info>
+
+      <po-info p-label="Classe" [p-value]="classeVisualizar" class="po-md-6">
+      </po-info>
+
+      <po-info p-label="Idade" [p-value]="idadeVisualizar" class="po-md-6">
+      </po-info>
+    </po-modal>
+
+    <po-modal
+      #modalEditar
+      [p-hide-close]="true"
+      [p-primary-action]="confirmModalE"
+      [p-secondary-action]="closeModalE"
+      p-size="string"
+      p-title="Editar Aluno"
+    >
+      <po-input
+        p-label="Nome Completo"
+        name="nomeCompletoEditar"
+        [(ngModel)]="nomeCompletoEditar"
+      ></po-input>
+
+      <po-input
+        p-label="Email"
+        name="emailEditar"
+        [(ngModel)]="emailEditar"
+        class="po-md-6"
+      ></po-input>
+
+      <po-number
+        p-label="Telefone"
+        [p-minlength]="11"
+        name="telefoneEditar"
+        [(ngModel)]="telefoneEditar"
+        class="po-md-6"
+      ></po-number>
+
+      <po-number
+        p-label="RA"
+        name="raEditar"
+        [(ngModel)]="raEditar"
+        [p-maxlength]="9"
+        class="po-md-6"
+      ></po-number>
+
+      <po-input
+        p-label="Curso"
+        name="cursoEditar"
+        [(ngModel)]="cursoEditar"
+        class="po-md-6"
+      ></po-input>
+
+      <po-input
+        p-label="Número de classe"
+        class="po-md-6"
+        name="classeEditar"
+        [(ngModel)]="classeEditar"
+        [p-maxlength]="2"
+      ></po-input>
+
+      <po-number
+        p-label="Idade"
+        name="idadeEditar"
+        [(ngModel)]="idadeEditar"
+        class="po-md-6"
+        [p-maxlength]="3"
+      ></po-number>
+    </po-modal>
+
+    <po-modal
+      #modalExcluir
+      [p-primary-action]="confirmModalEx"
+      [p-secondary-action]="closeModalEx"
+      p-title="Excluir Aluno?"
+    >
+    </po-modal>
+  </po-page-default>
+</div>
